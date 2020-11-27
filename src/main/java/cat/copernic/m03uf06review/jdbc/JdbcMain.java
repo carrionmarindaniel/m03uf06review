@@ -7,16 +7,18 @@ package cat.copernic.m03uf06review.jdbc;
 
 import java.sql.Connection;
 import static java.sql.DriverManager.getConnection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
  * En aquesta secció cal accedir a una taula de MySQL amb un camp de cada tipus:
- * 
+ *
  * int o long, double o float, boolean, char, String i java.sql.Date
- * 
+ *
  * Recòrrer el result set i mostrar-lo per la consola.
- * 
- * 
+ *
+ *
  * @author pep
  */
 public class JdbcMain {
@@ -26,8 +28,12 @@ public class JdbcMain {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        Connection c = getConnection("jdbc:mysql://localhost:3306/mysql?"
-                    + "useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+        Connection c = getConnection("jdbc:mysql://localhost:3306/empleados?"
+                + "useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+        String consulta = "select * from empleados.empleados";
+        PreparedStatement statement = c.prepareStatement(consulta);
+        ResultSet rs = statement.executeQuery();
+        System.out.println(rs.getStatement().toString());
     }
-    
+
 }
