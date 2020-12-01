@@ -42,8 +42,7 @@ public class JdbcMain {
           </dependency>
          */
         //crear conection con la info de la base de datos,puerto, direccion ip, usuario y contraseña...
-        Connection c = getConnection("jdbc:mysql://localhost:3306/empleados?"
-                + "useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+        Connection c = getConnection("jdbc:mysql://localhost:3306/empleados?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
         //la query
         String consulta = "select * from empleados.empleados";
         //prepara consulta

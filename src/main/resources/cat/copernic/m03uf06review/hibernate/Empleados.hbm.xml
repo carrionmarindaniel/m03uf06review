@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-dic-2020 21:41:57 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cat.copernic.m03uf06review.hibernate.Empleados" table="empleados" catalog="empleados" optimistic-lock="version">
+        <id name="uid" type="java.lang.Integer">
+            <column name="uid" />
+            <generator class="identity" />
+        </id>
+        <property name="edad" type="int">
+            <column name="edad" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="32" not-null="true" />
+        </property>
+        <property name="sueldo" type="double">
+            <column name="sueldo" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="contratadoActualmente" type="boolean">
+            <column name="contratado_actualmente" not-null="true" />
+        </property>
+        <property name="fechaInicioContrato" type="date">
+            <column name="fecha_inicio_contrato" length="10" not-null="true" />
+        </property>
+        <property name="fechaFinContrato" type="date">
+            <column name="fecha_fin_contrato" length="10" not-null="true" />
+        </property>
+        <property name="plus" type="string">
+            <column name="plus" length="16777215" not-null="true" />
+        </property>
+        <property name="genero" type="char">
+            <column name="genero" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
