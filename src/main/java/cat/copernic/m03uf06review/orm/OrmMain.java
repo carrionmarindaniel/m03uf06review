@@ -32,15 +32,8 @@ public class OrmMain {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here 
-        //crear conection con la info de la base de datos,puerto, direccion ip, usuario y contraseña...
-        Connection c = getConnection("jdbc:mysql://localhost:3306/empleados?"
-                + "useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
-        //la query
-        String consulta = "select * from empleados.empleados";
-        //prepara consulta
-        PreparedStatement statement = c.prepareStatement(consulta);
-        //hace consulta y guarda los resultados en esta misma clase
-        ResultSet rs = statement.executeQuery();
+        Connection c = createConection();
+        ResultSet rs = doQuery(c);
         //las variables del objeto
         int uid;
         int edad;
@@ -92,11 +85,29 @@ public class OrmMain {
         for (int cont = 0; cont < ArrayList.size(); cont++) {
             System.out.println(ArrayList.get(cont).toString());
         }
-        */
+         */
+    }
+
+    private static Connection createConection() throws SQLException {
+        //crear conection con la info de la base de datos,puerto, direccion ip, usuario y contraseña...
+        Connection c = getConnection("jdbc:mysql://localhost:3306/empleados?"
+                + "useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+        return c;
+    }
+
+    private static ResultSet doQuery(Connection c) throws SQLException {
+        //la query
+        String consulta = "select * from empleados.empleados";
+        //prepara consulta
+        PreparedStatement statement = c.prepareStatement(consulta);
+        //hace consulta y guarda los resultados en esta misma clase
+        ResultSet rs = statement.executeQuery();
+        return rs;
+
     }
 }
-//creamos clase empleado
 
+//creamos clase empleado
 class empleado {
 
     int uid;
