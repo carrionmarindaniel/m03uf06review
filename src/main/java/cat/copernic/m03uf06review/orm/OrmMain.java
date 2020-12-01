@@ -26,66 +26,34 @@ import java.util.Iterator;
  * @author pep
  */
 public class OrmMain {
+    //las variables del objeto
+
+    static int uid;
+    static int edad;
+    static String nombre;
+    static double sueldo;
+    static boolean contratado_actualmente;
+    static Date fecha_inicio_contrato;
+    static Date fecha_fin_contrato;
+    static long plus;
+    static char genero;
+    static empleado empleado = null;
+    static ArrayList<empleado> ArrayList = new ArrayList<>();
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here 
+        //crea conexion
         Connection c = createConection();
+        //Haze consulta
         ResultSet rs = doQuery(c);
-        //las variables del objeto
-        int uid;
-        int edad;
-        String nombre;
-        double sueldo;
-        boolean contratado_actualmente;
-        Date fecha_inicio_contrato;
-        Date fecha_fin_contrato;
-        long plus;
-        char genero;
-        empleado empleado = null;
-        //en esta coleccion guardaremos todas las instancias de la clase
-        ArrayList<empleado> ArrayList = new ArrayList<>();
         //rellenamos la coleccion
-        while (rs.next()) {
-            uid = rs.getInt("uid");
-            nombre = rs.getString("nombre");
-            edad = rs.getInt("edad");
-            sueldo = rs.getDouble("sueldo");
-            contratado_actualmente = rs.getBoolean("contratado_actualmente");
-            fecha_inicio_contrato = rs.getDate("fecha_inicio_contrato");
-            fecha_fin_contrato = rs.getDate("fecha_fin_contrato");
-            plus = rs.getLong("plus");
-            genero = rs.getString("genero").charAt(0);
-            //creamos la instancia de la clase empleado
-            empleado = new empleado(uid, edad, nombre, sueldo, contratado_actualmente, fecha_inicio_contrato, fecha_fin_contrato, plus, genero);
-            //añadimos la instancia de la clase empleado a una lista
-            ArrayList.add(empleado);
-        }
+        fillColection(rs);
         //imprimimos arraylist de todos los empleados
-        for (int cont = 0; cont < ArrayList.size(); cont++) {
-            empleado = ArrayList.get(cont);
-            uid = empleado.getUid();
-            nombre = empleado.getNombre();
-            edad = empleado.getEdad();
-            sueldo = empleado.getSueldo();
-            contratado_actualmente = empleado.isContratado_actualmente();
-            fecha_inicio_contrato = empleado.getFecha_inicio_contrato();
-            fecha_fin_contrato = empleado.getFecha_fin_contrato();
-            plus = empleado.getPlus();
-            genero = empleado.getGenero();
-            System.out.println("nombre: " + nombre + "| uid: " + uid + "| edad: " + edad + "| sueldo: " + sueldo + "| contrato vigente: " + contratado_actualmente
-                    + "| fecha contratacion: " + fecha_inicio_contrato + "| fecha fin contrato: " + fecha_fin_contrato + "| plus: " + plus
-                    + "| genero: " + genero);
-        }
+        muestraResultados(ArrayList);
 
-        //otra forma de hacerlo imprimir todas las instancias de la clase
-        /*
-        for (int cont = 0; cont < ArrayList.size(); cont++) {
-            System.out.println(ArrayList.get(cont).toString());
-        }
-         */
     }
 
     private static Connection createConection() throws SQLException {
@@ -104,6 +72,48 @@ public class OrmMain {
         ResultSet rs = statement.executeQuery();
         return rs;
 
+    }
+
+    private static void muestraResultados(ArrayList<empleado> ArrayList) {
+        for (int cont = 0; cont < ArrayList.size(); cont++) {
+            empleado = ArrayList.get(cont);
+            uid = empleado.getUid();
+            nombre = empleado.getNombre();
+            edad = empleado.getEdad();
+            sueldo = empleado.getSueldo();
+            contratado_actualmente = empleado.isContratado_actualmente();
+            fecha_inicio_contrato = empleado.getFecha_inicio_contrato();
+            fecha_fin_contrato = empleado.getFecha_fin_contrato();
+            plus = empleado.getPlus();
+            genero = empleado.getGenero();
+            System.out.println("nombre: " + nombre + "| uid: " + uid + "| edad: " + edad + "| sueldo: " + sueldo + "| contrato vigente: " + contratado_actualmente
+                    + "| fecha contratacion: " + fecha_inicio_contrato + "| fecha fin contrato: " + fecha_fin_contrato + "| plus: " + plus
+                    + "| genero: " + genero);
+        }
+         //otra forma de hacerlo imprimir todas las instancias de la clase
+        /*
+        for (int cont = 0; cont < ArrayList.size(); cont++) {
+            System.out.println(ArrayList.get(cont).toString());
+        }
+         */
+    }
+
+    private static void fillColection(ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            uid = rs.getInt("uid");
+            nombre = rs.getString("nombre");
+            edad = rs.getInt("edad");
+            sueldo = rs.getDouble("sueldo");
+            contratado_actualmente = rs.getBoolean("contratado_actualmente");
+            fecha_inicio_contrato = rs.getDate("fecha_inicio_contrato");
+            fecha_fin_contrato = rs.getDate("fecha_fin_contrato");
+            plus = rs.getLong("plus");
+            genero = rs.getString("genero").charAt(0);
+            //creamos la instancia de la clase empleado
+            empleado = new empleado(uid, edad, nombre, sueldo, contratado_actualmente, fecha_inicio_contrato, fecha_fin_contrato, plus, genero);
+            //añadimos la instancia de la clase empleado a una lista
+            ArrayList.add(empleado);
+        }
     }
 }
 
