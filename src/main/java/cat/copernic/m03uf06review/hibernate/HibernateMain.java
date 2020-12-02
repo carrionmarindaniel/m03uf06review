@@ -25,23 +25,54 @@ import org.hibernate.SessionFactory;
  */
 public class HibernateMain {
 
+    /*
+    Para implementar la libreria hibernate he seguido el siguiente tutorial: https://www.discoduroderoer.es/instalacion-de-hibernate-en-netbeans/
+    Al implementar hibernate ha salido el siguiente error: org.hibernate.boot.MappingNotFoundException: Mapping (RESOURCE) not found
+    Lo he solucionado haciendo un 'clean and build' del proyecto.
+    Tambien hay que añadir las dependencias en el pom.xml
+    </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.9.Final</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.1.Final</version>
+        </dependency>
+     */
     /**
      * @param args the command line arguments
      */
+    static Empleados empleado;
+
     public static void main(String[] args) {
         // TODO code application logic here
-        SessionFactory instancia = HibernateUtil.buildSessionFactory();
-        Session session = instancia.openSession();
+        //creamos sesion
+        Session session = createSession();
+        //hacemos query
         Query q = session.createQuery("from Empleados");
-        Iterator<Empleados> it = q.iterate();
-
-        Empleados e;
-        while (it.hasNext()) {
-            e = it.next();
-            System.out.println(e.getNombre());
-        }
-
+        //creamos iterador los resultados de la query
+        Iterator it =q.iterate();
+        //impirmimos resultados
+        showResults(it);
+        //cerramos sesion
         session.close();
     }
 
+    private static Session createSession() {
+        SessionFactory instancia = HibernateUtil.buildSessionFactory();
+        return instancia.openSession();
+
+    }
+
+    private static void showResults(Iterator<Empleados> it) {
+        while (it.hasNext()) {
+            empleado = it.next();
+            System.out.println("+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+            System.out.println("+ "+empleado.toString()+" +");
+        }
+    }
 }

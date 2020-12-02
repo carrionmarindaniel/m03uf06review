@@ -98,6 +98,11 @@ public class Empleados  implements java.io.Serializable {
         this.genero = genero;
     }
 
+    @Override
+    public String toString() {
+        return "uid=" + uid + ", edad=" + edad + ", nombre=" + nombre + ", sueldo=" + sueldo + ", contratadoActualmente=" + contratadoActualmente + ", fechaInicioContrato=" + fechaInicioContrato + ", fechaFinContrato=" + fechaFinContrato + ", plus=" + plus + ", genero=" + genero;
+    }
+
 
 
 
