@@ -6,7 +6,7 @@ package cat.copernic.m03uf06review.hibernate;
  * and open the template in the editor.
  */
 import java.util.Iterator;
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -37,11 +37,8 @@ public class HibernateMain {
             <version>5.4.9.Final</version>
             <type>jar</type>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.1.Final</version>
-        </dependency>
+    
+    La calse query tambien estava obsoleta por lo que cambie el import de la libreria org.hibernate.Query ---> org.hibernate.query.Query
      */
     /**
      * @param args the command line arguments
@@ -55,7 +52,7 @@ public class HibernateMain {
         //hacemos query
         Query q = session.createQuery("from Empleados");
         //creamos iterador los resultados de la query
-        Iterator it =q.iterate();
+        Iterator it = q.iterate();
         //impirmimos resultados
         showResults(it);
         //cerramos sesion
@@ -72,7 +69,7 @@ public class HibernateMain {
         while (it.hasNext()) {
             empleado = it.next();
             System.out.println("+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
-            System.out.println("+ "+empleado.toString()+" +");
+            System.out.println("+ " + empleado.toString() + " +");
         }
     }
 }
