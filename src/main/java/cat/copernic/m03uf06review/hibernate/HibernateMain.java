@@ -45,13 +45,9 @@ public class HibernateMain {
     /**
      * @param args the command line arguments
      */
-    static Empleados empleado=null;
+    static Empleados empleado;
 
     public static void main(String[] args) {
-        empleado=select(1);
-        //empleado.setNombre("nuevo nombre");
-        //update(empleado);
-        delete(empleado);
         // TODO code application logic here
         //creamos sesion
         Session session = createSession();
@@ -65,7 +61,7 @@ public class HibernateMain {
         session.close();
 
         /* INSERT 
-        empleado = new Empleados(0, "s", 5, true, Date.valueOf("2020-02-02"), Date.valueOf("2020-02-02"), "s", 'f');
+        empleado = new Empleados(0, "s", 5, true, Date.valueOf("2020-02-02"), Date.valueOf("2020-02-02"), "s", 'f',1);
         insert(empleado);
          */
  /* SELECT
@@ -115,6 +111,7 @@ public class HibernateMain {
             //hacemos query
             Query q = session.createQuery("from Empleados where id = "+ id);
             empleado = (Empleados) q.getResultList().get(0);
+            session.close();
             return empleado;
         } catch (Exception general) {
             System.out.println(general.toString());
@@ -129,6 +126,7 @@ public class HibernateMain {
             Transaction tx = session.beginTransaction();
             session.update(empleado);
             tx.commit();
+            session.close();
             return true;
         } catch (Exception general) {
             System.out.println(general.toString());
@@ -143,6 +141,7 @@ public class HibernateMain {
             empleado = select(empleado.getUid());
             session.delete(empleado);
             tx.commit();
+            session.close();
             return true;
         } catch (Exception general) {
             System.out.println(general.toString());

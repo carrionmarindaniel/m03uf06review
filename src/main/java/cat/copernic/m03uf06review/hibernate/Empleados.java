@@ -1,5 +1,5 @@
 package cat.copernic.m03uf06review.hibernate;
-// Generated 01-dic-2020 21:41:57 by Hibernate Tools 4.3.1
+// Generated 10-dic-2020 21:54:52 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,6 +11,7 @@ public class Empleados  implements java.io.Serializable {
 
 
      private Integer uid;
+     private Departamentos departamentos;
      private int edad;
      private String nombre;
      private double sueldo;
@@ -23,7 +24,19 @@ public class Empleados  implements java.io.Serializable {
     public Empleados() {
     }
 
+	
     public Empleados(int edad, String nombre, double sueldo, boolean contratadoActualmente, Date fechaInicioContrato, Date fechaFinContrato, String plus, char genero) {
+        this.edad = edad;
+        this.nombre = nombre;
+        this.sueldo = sueldo;
+        this.contratadoActualmente = contratadoActualmente;
+        this.fechaInicioContrato = fechaInicioContrato;
+        this.fechaFinContrato = fechaFinContrato;
+        this.plus = plus;
+        this.genero = genero;
+    }
+    public Empleados(Departamentos departamentos, int edad, String nombre, double sueldo, boolean contratadoActualmente, Date fechaInicioContrato, Date fechaFinContrato, String plus, char genero) {
+       this.departamentos = departamentos;
        this.edad = edad;
        this.nombre = nombre;
        this.sueldo = sueldo;
@@ -40,6 +53,13 @@ public class Empleados  implements java.io.Serializable {
     
     public void setUid(Integer uid) {
         this.uid = uid;
+    }
+    public Departamentos getDepartamentos() {
+        return this.departamentos;
+    }
+    
+    public void setDepartamentos(Departamentos departamentos) {
+        this.departamentos = departamentos;
     }
     public int getEdad() {
         return this.edad;
@@ -100,7 +120,7 @@ public class Empleados  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "uid=" + uid + ", edad=" + edad + ", nombre=" + nombre + ", sueldo=" + sueldo + ", contratadoActualmente=" + contratadoActualmente + ", fechaInicioContrato=" + fechaInicioContrato + ", fechaFinContrato=" + fechaFinContrato + ", plus=" + plus + ", genero=" + genero;
+        return "Empleados{" + "uid=" + uid + ", departamentos=" + departamentos + ", edad=" + edad + ", nombre=" + nombre + ", sueldo=" + sueldo + ", contratadoActualmente=" + contratadoActualmente + ", fechaInicioContrato=" + fechaInicioContrato + ", fechaFinContrato=" + fechaFinContrato + ", plus=" + plus + ", genero=" + genero + '}';
     }
 
 

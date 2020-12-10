@@ -42,9 +42,10 @@ Contributor(s):
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/empleados?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">1234</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/empleados?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
     <mapping resource="cat/copernic/m03uf06review/hibernate/Empleados.hbm.xml"/>
+    <mapping resource="cat/copernic/m03uf06review/hibernate/Departamentos.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

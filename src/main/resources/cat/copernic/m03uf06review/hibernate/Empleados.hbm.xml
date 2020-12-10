@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 01-dic-2020 21:41:57 by Hibernate Tools 4.3.1 -->
+<!-- Generated 10-dic-2020 21:54:52 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="cat.copernic.m03uf06review.hibernate.Empleados" table="empleados" catalog="empleados" optimistic-lock="version">
         <id name="uid" type="java.lang.Integer">
             <column name="uid" />
             <generator class="identity" />
         </id>
+        <many-to-one name="departamentos" class="cat.copernic.m03uf06review.hibernate.Departamentos" fetch="select">
+            <column name="uid_departamento" />
+        </many-to-one>
         <property name="edad" type="int">
             <column name="edad" not-null="true" />
         </property>
