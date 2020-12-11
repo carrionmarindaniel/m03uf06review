@@ -1,4 +1,4 @@
-package cat.copernic.m03uf06review.hibernate;
+package clases;
 // Generated 10-dic-2020 21:54:52 by Hibernate Tools 4.3.1
 
 
@@ -16,6 +16,15 @@ public class Departamentos  implements java.io.Serializable {
      private Set empleadoses = new HashSet(0);
 
     public Departamentos() {
+    }
+
+    public Departamentos(Integer uid) {
+        this.uid = uid;
+    }
+
+    public Departamentos(Integer uid, String nombre) {
+        this.uid = uid;
+        this.nombre = nombre;
     }
 
 	
@@ -51,7 +60,7 @@ public class Departamentos  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Departamentos{" + "uid=" + uid + ", nombre=" + nombre + '}';
+        return "uid=" + uid + ", nombre=" + nombre;
     }
 
 

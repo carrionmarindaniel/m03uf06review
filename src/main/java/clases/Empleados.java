@@ -1,7 +1,8 @@
-package cat.copernic.m03uf06review.hibernate;
+package clases;
 // Generated 10-dic-2020 21:54:52 by Hibernate Tools 4.3.1
 
 
+import clases.Departamentos;
 import java.util.Date;
 
 /**
@@ -120,7 +121,7 @@ public class Empleados  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Empleados{" + "uid=" + uid + ", departamentos=" + departamentos + ", edad=" + edad + ", nombre=" + nombre + ", sueldo=" + sueldo + ", contratadoActualmente=" + contratadoActualmente + ", fechaInicioContrato=" + fechaInicioContrato + ", fechaFinContrato=" + fechaFinContrato + ", plus=" + plus + ", genero=" + genero + '}';
+        return "uid=" + uid + ", departamento=" + departamentos.getNombre() + ", edad=" + edad + ", nombre=" + nombre + ", sueldo=" + sueldo + ", contratadoActualmente=" + contratadoActualmente + ", fechaInicioContrato=" + fechaInicioContrato + ", fechaFinContrato=" + fechaFinContrato + ", plus=" + plus + ", genero=" + genero;
     }
 
 
