@@ -7,8 +7,8 @@ package cat.copernic.m03uf06review.hibernate_relational;
 
 import clases.Departamentos;
 import clases.Empleados;
-import java.sql.Date;
 import java.util.Iterator;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -31,7 +31,6 @@ import org.hibernate.query.Query;
 public class HibernateRelationalMain {
 
     // Haciendo click derecho en hibernate.cfg.xml se pueden hacer querys desde netbeans
-    
     private static Empleados empleado;
     private static Departamentos departamento;
     //creamos sesion
@@ -69,6 +68,10 @@ public class HibernateRelationalMain {
         verCantidadEmpleadosEnDepartamento(1);
         session.close();
          */
+ /* LA SUMA DEL SALARIO DE TODOS LOS EMPLEADOS DE CADA DEPARTAMENTO
+        verGastoPorDepartamentos();
+         */
+ verGastoPorDepartamentos();
     }
 
     private static Session createSession() {
@@ -167,6 +170,23 @@ public class HibernateRelationalMain {
             System.out.println(0);
         } catch (Exception a) {
             a.printStackTrace();
+        }
+    }
+
+    private static void verGastoPorDepartamentos() {
+        Query q = session.createQuery("select departamentos.uid as uid , sum(sueldo) as gasto from Empleados group by departamentos.uid ");
+        List list;
+        //la query devuelve una lista con arrays de objetos que contienen los resultados de las columnas
+        list = q.list();
+        Object[] array;
+        for (int cont = 0; cont < list.size(); cont++) {
+            //recojemos el array de objetos de cada posicion de la lista
+            array = (Object[]) list.get(cont);
+            //en la posicion 0 de cada array esta el id del departamento
+            int id_departamento = (int) array[0];
+            //en la posicion 1 de cada array esta la suma del salario de todos los empleados de ese departamento
+            double salario = (double) array[1];
+            System.out.println("id departamento: " + id_departamento + " salario: " + salario);
         }
     }
 }
