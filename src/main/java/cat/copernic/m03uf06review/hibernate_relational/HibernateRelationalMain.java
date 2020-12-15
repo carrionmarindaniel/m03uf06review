@@ -7,6 +7,7 @@ package cat.copernic.m03uf06review.hibernate_relational;
 
 import clases.Departamentos;
 import clases.Empleados;
+import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Session;
@@ -71,7 +72,7 @@ public class HibernateRelationalMain {
  /* LA SUMA DEL SALARIO DE TODOS LOS EMPLEADOS DE CADA DEPARTAMENTO
         verGastoPorDepartamentos();
          */
- verGastoPorDepartamentos();
+        showAll();
     }
 
     private static Session createSession() {
@@ -82,9 +83,11 @@ public class HibernateRelationalMain {
 
     private static boolean insert(clases.Empleados empleado) {
         try {
+            Transaction tx = session.beginTransaction();
             //Save the employee in database
-            //no es necesario hacer commit, se hace durante el .save()
+            //es necesario hacer tx.commit(); 
             session.save(empleado);
+            tx.commit();
             return true;
         } catch (Exception excepcionGeneral) {
             System.out.println(excepcionGeneral);
