@@ -62,6 +62,9 @@ public class HibernateRelationalMain {
  /* DELETE
         delete(select(1));
          */
+ /* LA SUMA DEL SALARIO DE TODOS LOS EMPLEADOS DE CADA DEPARTAMENTO
+        verGastoPorDepartamentos();
+         */
  /*VER TODOS LOS EMPLEADOS ORDENADOR POR DEPARTAMENTO
         verTodosEmpleadosOrdenadosPorDepartamentos();
          */
@@ -69,10 +72,12 @@ public class HibernateRelationalMain {
         verCantidadEmpleadosEnDepartamento(1);
         session.close();
          */
- /* LA SUMA DEL SALARIO DE TODOS LOS EMPLEADOS DE CADA DEPARTAMENTO
-        verGastoPorDepartamentos();
-         */
-        showAll();
+
+        empleado = select(4);
+        empleado.setNombre("nuevo nombre");
+        update(empleado);
+        System.out.println(select(4));
+        //showAll();
     }
 
     private static Session createSession() {
@@ -100,9 +105,14 @@ public class HibernateRelationalMain {
             Query q = session.createQuery("from Empleados where id = " + id);
             clases.Empleados empleado = (clases.Empleados) q.getResultList().get(0);
             return empleado;
+        } catch (java.lang.NullPointerException a) {
+            System.out.println("No se ha encontrado el empleado buscado...");
+            return null;
+
         } catch (Exception general) {
             System.out.println(general.toString());
             return null;
+
         }
     }
 
