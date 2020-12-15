@@ -73,11 +73,6 @@ public class HibernateRelationalMain {
         session.close();
          */
 
-        empleado = select(4);
-        empleado.setNombre("nuevo nombre");
-        update(empleado);
-        System.out.println(select(4));
-        //showAll();
     }
 
     private static Session createSession() {
