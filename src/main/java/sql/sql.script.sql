@@ -26,4 +26,4 @@ INSERT INTO empleados VALUES(0,28,'Lucia Lopez',1902.52,true,'2018-7-15','2021-1
 INSERT INTO empleados VALUES(0,48,'German Melero',2105.75,true,'2015-2-18','2022-8-15',58.10,'M',2);
 select * from empleados.empleados;
 select * from empleados.departamentos;
-select count(*) from Empleados group by uid_departamento;
+select uid_departamento,sum(sueldo) from empleados group by uid_departamento;
